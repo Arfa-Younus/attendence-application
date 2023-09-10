@@ -12,27 +12,6 @@
    const db = firebaseApp.firestore();
    const auth = firebaseApp.auth();
 
-//    Signup Function
-const signUp= ()=>{
-    const email = document.getElementById("email").value
-    const password =document.getElementById('password').value;
-    console.log(email,password)
-    // firebase code
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-  .then((result) => {
-    // Signed in 
-  document.write("You Are Signup")
-  console.log("result")
-    // ...
-  })
-  .catch((error) => {
-console.log(error.code)
-console.log(error.message)
-    // ..
-  });
-}
-
-
 //signin function 
 const signIn = ()=>{
     const email = document.getElementById("email").value
@@ -50,3 +29,51 @@ const signIn = ()=>{
     console.log(error.message)
   });
 }
+
+
+
+// Function to validate email
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+// Function to validate first and last name (no special characters or numbers)
+function validateName(name) {
+  const nameRegex = /^[a-zA-Z]+$/;
+  return nameRegex.test(name);
+}
+
+// Modify the signUp function to include name validation
+const signUp = () => {
+  const firstName = document.getElementById("first-name").value;
+  const lastName = document.getElementById("last-name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  if (!validateName(firstName)) {
+    alert("Please enter a valid First Name.");
+    return;
+  }
+
+  if (!validateName(lastName)) {
+    alert("Please enter a valid Last Name.");
+    return;
+  }
+
+  if (!validateEmail(email)) {
+    alert("Please enter a valid Email.");
+    return;
+  }
+
+  // Continue with Firebase signup code
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((result) => {
+      // Signed in
+      document.write("You Are Signed up");
+    })
+    .catch((error) => {
+      console.log(error.code);
+      console.log(error.message);
+    });
+};
