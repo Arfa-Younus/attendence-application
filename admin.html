@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- firebase link -->
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth-compat.js"></script>
+  </head>
+    <title>Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Panel</h2>
+        <div class="form-group">
+            <label for="classTimings">Class Timings:</label>
+            <select id="classTimings">
+                <option value="9:00 AM">9:00 AM</option>
+                <option value="10:30 AM">10:30 AM</option>
+                <option value="1:00 PM">1:00 PM</option>
+                <!-- Add more options here -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="schedule">Schedule:</label>
+            <select id="schedule">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <!-- Add more options here -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="teacherName">Teacher's Name:</label>
+            <select id="teacherName">
+                <option value="John Smith">Miss Hina</option>
+                <option value="Jane Doe">Miss Tayyeba</option>
+                <option value="Robert Johnson">Miss Qurratulain</option>
+                <!-- Add more options here -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="sectionName">Section Name:</label>
+            <select id="sectionName">
+                <option value="Section A">Section A</option>
+                <option value="Section B">Section B</option>
+                <option value="Section C">Section C</option>
+                <!-- Add more options here -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="courseName">Course Name:</label>
+            <select id="courseName">
+                <option value="Mathematics">Mathematics</option>
+                <option value="Science">Science</option>
+                <option value="History">History</option>
+                <!-- Add more options here -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="batchNumber">Batch Number:</label>
+            <select id="batchNumber">
+                <option value="Batch 101">Batch 101</option>
+                <option value="Batch 202">Batch 202</option>
+                <option value="Batch 303">Batch 303</option>
+                <!-- Add more options here -->
+            </select>
+        </div>
+        <button onclick="saveData()">Save</button>
+    </div>
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD6fSj5uCT5sfQPCWYFN7yR2GZhUEM4UqM",
+  authDomain: "auth-form-d3cd2.firebaseapp.com",
+  databaseURL: "https://auth-form-d3cd2-default-rtdb.firebaseio.com",
+  projectId: "auth-form-d3cd2",
+  storageBucket: "auth-form-d3cd2.appspot.com",
+  messagingSenderId: "509532602979",
+  appId: "1:509532602979:web:47f131e05e49478d89ae56",
+  measurementId: "G-3T36C3EMTT"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+
+
+
+
+function saveData() {
+    const classTimings = document.getElementById("classTimings").value;
+    const schedule = document.getElementById("schedule").value;
+    const teacherName = document.getElementById("teacherName").value;
+    const sectionName = document.getElementById("sectionName").value;
+    const courseName = document.getElementById("courseName").value;
+    const batchNumber = document.getElementById("batchNumber").value;
+
+    const database = firebase.database();
+
+    const newData = {
+        classTimings,
+        schedule,
+        teacherName,
+        sectionName,
+        courseName,
+        batchNumber,
+    };
+
+    // Push data to a specific location in your database
+    database.ref("https://auth-form-d3cd2-default-rtdb.firebaseio.com").push(newData);
+}
+
+
+</script>
+</body>
+</html>
