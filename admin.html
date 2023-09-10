@@ -93,9 +93,9 @@
         <div class="form-group">
             <label for="courseName">Course Name:</label>
             <select id="courseName">
-                <option value="Mathematics">Mathematics</option>
-                <option value="Science">Science</option>
-                <option value="History">History</option>
+                <option value="Mathematics">Web & App Development</option>
+                <option value="Science">Graphic Designing</option>
+                <option value="History">Digital Marketting</option>
                 <!-- Add more options here -->
             </select>
         </div>
@@ -108,7 +108,7 @@
                 <!-- Add more options here -->
             </select>
         </div>
-        <button onclick="saveData()">Save</button>
+        <button onclick="submitData()">Submit</button>
     </div>
 <script>
 
@@ -126,16 +126,19 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-
-
-
-function saveData() {
+function submitData() {
     const classTimings = document.getElementById("classTimings").value;
     const schedule = document.getElementById("schedule").value;
     const teacherName = document.getElementById("teacherName").value;
     const sectionName = document.getElementById("sectionName").value;
     const courseName = document.getElementById("courseName").value;
     const batchNumber = document.getElementById("batchNumber").value;
+
+    // Check if all fields are filled
+    if (!classTimings || !schedule || !teacherName || !sectionName || !courseName || !batchNumber) {
+        alert("Please fill in all the details before saving.");
+        return; // Do not proceed if any field is empty
+    }
 
     const database = firebase.database();
 
@@ -149,8 +152,12 @@ function saveData() {
     };
 
     // Push data to a specific location in your database
-    database.ref("https://auth-form-d3cd2-default-rtdb.firebaseio.com").push(newData);
+    // database.ref("https://auth-form-d3cd2-default-rtdb.firebaseio.com").push(newData);
+
+    // Redirect to admindashboard.html
+    window.location.href = "admindashboard.html";
 }
+
 
 
 </script>
