@@ -4,11 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- firebase link -->
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-auth-compat.js"></script>
+
   </head>
     <title>Admin Panel</title>
     <style>
@@ -108,58 +104,17 @@
                 <!-- Add more options here -->
             </select>
         </div>
-        <button onclick="submitData()">Submit</button>
+        <div class="buttons">
+            <button id="insert">Insert</button>
+            <button id="read">Read</button>
+            <button id="update">Update</button>
+            <button id="delete">Delete</button>
+          </div><br>
+          <button onclick="submitData()">Submit</button>
+        </div>
     </div>
-<script>
-
-const firebaseConfig = {
-  apiKey: "AIzaSyD6fSj5uCT5sfQPCWYFN7yR2GZhUEM4UqM",
-  authDomain: "auth-form-d3cd2.firebaseapp.com",
-  databaseURL: "https://auth-form-d3cd2-default-rtdb.firebaseio.com",
-  projectId: "auth-form-d3cd2",
-  storageBucket: "auth-form-d3cd2.appspot.com",
-  messagingSenderId: "509532602979",
-  appId: "1:509532602979:web:47f131e05e49478d89ae56",
-  measurementId: "G-3T36C3EMTT"
-};
-
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-
-function submitData() {
-    const classTimings = document.getElementById("classTimings").value;
-    const schedule = document.getElementById("schedule").value;
-    const teacherName = document.getElementById("teacherName").value;
-    const sectionName = document.getElementById("sectionName").value;
-    const courseName = document.getElementById("courseName").value;
-    const batchNumber = document.getElementById("batchNumber").value;
-
-    // Check if all fields are filled
-    if (!classTimings || !schedule || !teacherName || !sectionName || !courseName || !batchNumber) {
-        alert("Please fill in all the details before saving.");
-        return; // Do not proceed if any field is empty
-    }
-
-    const database = firebase.database();
-
-    const newData = {
-        classTimings,
-        schedule,
-        teacherName,
-        sectionName,
-        courseName,
-        batchNumber,
-    };
-
-    // Push data to a specific location in your database
-    // database.ref("https://auth-form-d3cd2-default-rtdb.firebaseio.com").push(newData);
-
-    // Redirect to admindashboard.html
-    window.location.href = "admindashboard.html";
-}
-
-
-
-</script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js"></script>
+<script src="admin.js"></script>
+<script src="fireConfig.js"></script>
 </body>
 </html>
