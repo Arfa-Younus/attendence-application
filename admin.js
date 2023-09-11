@@ -88,15 +88,71 @@ document.getElementById("delete").onclick = function () {
   document.getElementById("batchNumber").value = "";
 };
 
-
-
-
-
-
-
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
 function submitData() {
     window.location.href = "admindashboard.html";
 }
+
+// ******************form validation*******************
+function validateForm() {
+  const name = document.getElementById("name").value.trim();
+  const fatherName = document.getElementById("fatherName").value.trim();
+  const rollNumber = document.getElementById("rollNumber").value.trim();
+  const contactNumber = document.getElementById("contactNumber").value.trim();
+  const cnicNumber = document.getElementById("cnicNumber").value.trim();
+  const picture = document.getElementById("picture").value;
+  const courseName = document.getElementById("courseName").value;
+  const assignedClass = document.getElementById("assignedClass").value;
+
+  // Validate each field as needed (you can add more specific validation logic)
+  if (name === "") {
+    alert("Please enter a valid name.");
+    return false;
+  }
+
+  if (fatherName === "") {
+    alert("Please enter a valid father's name.");
+    return false;
+  }
+
+  if (rollNumber === "") {
+    alert("Please enter a valid roll number.");
+    return false;
+  }
+
+  if (contactNumber === "" || !/^\d{10}$/.test(contactNumber)) {
+    alert("Please enter a valid 10-digit contact number.");
+    return false;
+  }
+
+  if (cnicNumber === "" || !/^\d{13}$/.test(cnicNumber)) {
+    alert("Please enter a valid 13-digit CNIC number.");
+    return false;
+  }
+
+  if (picture === "") {
+    alert("Please select a picture.");
+    return false;
+  }
+
+  if (courseName === "") {
+    alert("Please select a course.");
+    return false;
+  }
+
+  if (assignedClass === "") {
+    alert("Please select an assigned class.");
+    return false;
+  }
+
+  // If all fields are valid, the form will be submitted
+  return true;
+}
+
+document.getElementById("submit").addEventListener("click", function (event) {
+  if (!validateForm()) {
+    event.preventDefault(); // Prevent the form from submitting if validation fails
+  }
+});

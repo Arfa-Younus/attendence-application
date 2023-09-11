@@ -106,7 +106,7 @@ document.getElementById("delete").onclick = function () {
 const app = firebase.initializeApp(firebaseConfig);
 
 function submitData() {
-    window.location.href = "admindashboard.html";
+    window.location.href = "studentdashboard.html";
 }
 
 // ******************validation of form*****************
